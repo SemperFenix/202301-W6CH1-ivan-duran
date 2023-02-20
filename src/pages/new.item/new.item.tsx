@@ -1,3 +1,5 @@
-export default function NewItem() {
-  return <h2>New Item</h2>;
+import { NewItem } from '../../components/new.item/new.item';
+
+export default function NewItemPage() {
+  return <NewItem />;
 }
