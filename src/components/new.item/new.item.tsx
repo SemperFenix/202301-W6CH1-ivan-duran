@@ -1,16 +1,18 @@
+import React from 'react';
 import { SyntheticEvent, useContext, useRef } from 'react';
 import { PhotosContext } from '../../context/photos.context';
 import { MarsPhotoStructure } from '../../models/marsPhoto';
 
 export function NewItem() {
-  const { createPhoto } = useContext(PhotosContext);
+  const { state, createPhoto } = useContext(PhotosContext);
   const formNewPhotoRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     const formNewPhoto = formNewPhotoRef.current as HTMLFormElement;
+    const newId = Math.max(...state.privatePhotos.map((item) => item.id));
     const newPhoto: MarsPhotoStructure = {
-      id: 1,
+      id: newId + 1,
       sol: 1,
       camera_id: 1,
       camera_name: (formNewPhoto[4] as HTMLInputElement).value,
@@ -28,18 +30,24 @@ export function NewItem() {
       isFavorite: false,
       favoriteName: (formNewPhoto[0] as HTMLInputElement).value,
     };
+    const dialog = document.querySelector('dialog');
     createPhoto(newPhoto);
+    formNewPhoto.reset();
+    (dialog as unknown as HTMLDialogElement).showModal();
   };
 
   return (
-    <form onSubmit={handleSubmit} ref={formNewPhotoRef}>
-      <input type="text" placeholder="Photo name" required />
-      <input type="text" placeholder="Photo date" required />
-      <input type="text" placeholder="Launch date" required />
-      <input type="text" placeholder="Landing date" required />
-      <input type="text" placeholder="Camera used" required />
-      <input type="text" placeholder="Rover name" required />
-      <button>Enviar</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} ref={formNewPhotoRef}>
+        <input type="text" placeholder="Photo name" required />
+        <input type="text" placeholder="Photo date" required />
+        <input type="text" placeholder="Launch date" required />
+        <input type="text" placeholder="Landing date" required />
+        <input type="text" placeholder="Camera used" required />
+        <input type="text" placeholder="Rover name" required />
+        <input type="button" value="Enviar"></input>
+      </form>
+      <dialog className="dialog">¡Elemento creado!</dialog>
+    </>
   );
 }

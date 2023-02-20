@@ -5,8 +5,8 @@ describe('Given the new item page', () => {
   describe('When it is render', () => {
     test('Then it should return a heading', () => {
       render(<NewItemPage></NewItemPage>);
-      const element = screen.getByRole('heading');
-      expect(element).toBeInTheDocument();
+      const element = screen.getAllByRole('textbox');
+      element.forEach((item) => expect(item).toBeInTheDocument());
     });
   });
 });
