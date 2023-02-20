@@ -5,9 +5,9 @@ import GalleryPage from './gallery';
 describe('Given the new item page', () => {
   describe('When it is render', () => {
     test('Then it should return a heading', async () => {
-      render(<GalleryPage></GalleryPage>);
-
+      // eslint-disable-next-line testing-library/no-unnecessary-act
       act(async () => {
+        render(<GalleryPage></GalleryPage>);
         const element = await screen.findByRole('img');
         expect(element).toBeInTheDocument();
       });
