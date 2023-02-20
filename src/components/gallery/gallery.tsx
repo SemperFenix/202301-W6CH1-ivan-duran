@@ -10,14 +10,14 @@ export function Gallery() {
   const { state } = useContext(PhotosContext);
 
   return (
-    <>
+    <main className="gallery-page">
       <Filter></Filter>
       <FilterMobile></FilterMobile>
-      <main className="gallery">
+      <section className="gallery">
         {state?.photos.map((item: MarsPhotoStructure) => (
           <Card info={item} key={item.id}></Card>
         ))}
-      </main>
-    </>
+      </section>
+    </main>
   );
 }
