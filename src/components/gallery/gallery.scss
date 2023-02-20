@@ -4,3 +4,8 @@
   overflow: scroll;
   height: 32rem;
 }
+
+.galler-page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+}
