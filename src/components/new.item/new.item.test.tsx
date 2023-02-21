@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { PhotosContext } from '../../context/photos.context';
 import { mockContext } from '../../mocks/tests.mocks';
 import { NewItem } from './new.item';
