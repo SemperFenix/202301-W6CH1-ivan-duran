@@ -15,9 +15,9 @@ describe('Given the New Item component', () => {
   });
   describe('When submitted', () => {
     test('Then it should call the create new Photo method', () => {
-      const element = screen.getByRole('button');
+      const element = screen.getByTestId('photo-form');
 
-      userEvent.click(element);
+      fireEvent.submit(element);
       expect(mockContext.createPhoto).toHaveBeenCalled();
     });
   });

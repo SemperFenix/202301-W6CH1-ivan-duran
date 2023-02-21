@@ -38,7 +38,11 @@ export function NewItem() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} ref={formNewPhotoRef}>
+      <form
+        onSubmit={handleSubmit}
+        data-testid="photo-form"
+        ref={formNewPhotoRef}
+      >
         <input type="text" placeholder="Photo name" required />
         <input type="text" placeholder="Photo date" required />
         <input type="text" placeholder="Launch date" required />
